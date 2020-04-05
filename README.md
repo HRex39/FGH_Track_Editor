@@ -8,17 +8,17 @@
 ![image](https://img.shields.io/badge/python-3.8.2√-blue.svg)  
 ![image](https://img.shields.io/badge/anaconda-python×-red.svg)  
 ## 功能：  
-  简单的赛道编辑导入导出，要求输入excel格式xlsx  
+  简单的赛道编辑导入导出，要求输入txt格式  
   data1：x坐标  
   data2：y坐标  
   data3：左右锥桶（1代表蓝色；2代表红色）</br></br>
 ## How to use?
-  将需要描点的锥桶数据放置在    Map.xlsx    中  
+  将需要描点的锥桶数据放置在    map.txt    中  
     要求格式：  
     第一列：x坐标；第二列：y坐标；第三列：锥桶颜色</br></br>
 ## Windows：   
     Python3就能跑啦   
-    pip install openpyxl -i https://pypi.tuna.tsinghua.edu.cn/simple  
+    pip install numpy -i https://pypi.tuna.tsinghua.edu.cn/simple  
     pip install matplotlib -i https://pypi.tuna.tsinghua.edu.cn/simple  
   
 ## Linux：  
