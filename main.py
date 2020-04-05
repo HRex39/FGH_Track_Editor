@@ -1,12 +1,11 @@
 # 地图绘制.py
 # Use Tab to ident (BAD HABIT BUT ...)
 # 使用Tab来缩进（坏习惯。。。）
+# 导入导出的文件路径分别在70行与207行
 
 import time
 import sys
-from openpyxl import load_workbook
-from openpyxl.workbook import Workbook
-from openpyxl.writer.excel import ExcelWriter
+import numpy as np
 from tkinter import *
 import matplotlib.pyplot as plt
 
@@ -65,26 +64,14 @@ class TrackEditor:
         self.Help['text'] += 'Designed by FGH'
         self.Help.pack()
         #####
-
-    # 导入
+    
+    # 导入txt
     def Load_Data(self):
-        workbook = load_workbook('Map.xlsx')  # 找到需要xlsx文件的位置
-        booksheet = workbook.active  # 获取当前活跃的sheet,默认是第一个sheet
-        # 如果想获取别的sheet页采取下面这种方式，先获取所有sheet页名，在通过指定那一页。
-        # sheets = workbook.get_sheet_names()  # 从名称获取sheet
-        # booksheet = workbook.get_sheet_by_name(sheets[0])
-        # 获取sheet页的行数据
-        rows = booksheet.rows
-        # 获取sheet页的列数据
-        columns = booksheet.columns
-        i = 0
-        # 迭代所有的行
-        for row in rows:
-            i = i + 1
-            line = [col.value for col in row]
-            self.data1.append(booksheet.cell(row=i, column=1).value)  # 获取第i行1列的数据
-            self.data2.append(booksheet.cell(row=i, column=2).value)  # 获取第i行2列的数据
-            self.data3.append(booksheet.cell(row=i, column=3).value)  # 获取第i行3列的数据
+        data = np.loadtxt("map.txt")   #将文件中数据加载到data数组里
+        for tmp_data in data:
+            self.data1.append(tmp_data[0])
+            self.data2.append(tmp_data[1])
+            self.data3.append(int(tmp_data[2]))
 
     # 绘图函数
     def Matlab_Drawing(self):
@@ -184,7 +171,7 @@ class TrackEditor:
             except ValueError:
                 time.sleep(0.1)
                 continue
-            for i in range(len(self.data3)-1):
+            for i in range(len(self.data3)):
                 if abs(self.data1[i] - m) <= 0.5 and abs(self.data2[i] - n) <= 0.5:
                     if self.data3[i] == 1:
                         color = 'blue'
@@ -217,15 +204,10 @@ class TrackEditor:
 
     # 导出
     def Out_Data(self):
-        # 行号列号从1开始
-        wb = Workbook()
-        ws = wb.worksheets[0]
-        ws.title = u"导出数据"
-        for i in range(len(self.data1)):
-            ws.cell(row=i+1, column=1).value = self.data1[i]
-            ws.cell(row=i+1, column=2).value = self.data2[i]
-            ws.cell(row=i+1, column=3).value = self.data3[i]
-        wb.save('Output.xlsx')
+        with open('output.txt','w') as f:
+            for i in range(len(self.data1)):
+                f.write(str(self.data1[i]) + ' ' + str(self.data2[i]) + ' ' + str(int(self.data3[i])) + '\n')
+            f.close()
         #给个信
         self.root=Tk()
         self.Output_Check = Button(self.root, text='\n导出成功\n',command=self.root.destroy)
