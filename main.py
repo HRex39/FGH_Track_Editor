@@ -1,7 +1,7 @@
 # 地图绘制.py
 # Use Tab to ident (BAD HABIT BUT ...)
 # 使用Tab来缩进（坏习惯。。。）
-# 导入导出的文件路径分别在70行与207行
+# 导入导出的文件路径分别在83行、207行、182行、223行
 import time
 import sys
 import numpy as np
@@ -80,7 +80,7 @@ class TrackEditor:
 
     # 导入txt
     def Load_Data(self):
-        data = np.loadtxt("map.txt")  # 将文件中数据加载到data数组里
+        data = np.loadtxt("map\map.txt")  # 将文件中数据加载到data数组里
         for tmp_data in data:
             self.data1.append(tmp_data[0])
             self.data2.append(tmp_data[1])
@@ -179,7 +179,7 @@ class TrackEditor:
     # 导出为yaml和sdf文件
     def test(self):
         # yaml:
-        with open('output.yaml', 'w') as f:
+        with open('MAP_OUTPUT\output.yaml', 'w') as f:
             leftlx = {}
             leftly = {}
             rightrx = {}
@@ -220,7 +220,7 @@ class TrackEditor:
             f.close()
 
             # sdf文件
-        with open('output.sdf', 'w') as f:
+        with open('MAP_OUTPUT\output.sdf', 'w') as f:
             f.write(str("<?xml version='1.0' encoding='UTF-8'?>" + '\n'))
             f.write(str("<sdf version=\"1.4\">" + '\n'))
             f.write(str("<model name=\"some track\">" + '\n'))
@@ -397,7 +397,7 @@ class TrackEditor:
 
     # 导出
     def Out_Data(self):
-        with open('output.txt', 'w') as f:
+        with open('MAP_OUTPUT\output.txt', 'w') as f:
             for i in range(len(self.data1)):
                 f.write(str(self.data1[i]) + ' ' + str(self.data2[i]) + ' ' + str(int(self.data3[i])) + '\n')
             f.close()

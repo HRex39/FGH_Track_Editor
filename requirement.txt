@@ -1,3 +1,0 @@
-openpyxl
-tkinter
-matplotlib
