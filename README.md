@@ -8,7 +8,9 @@
 ![image](https://img.shields.io/badge/python-3.8.2√-blue.svg)  
 ![image](https://img.shields.io/badge/anaconda-python×-red.svg)  
 ## 功能：  
-  简单的赛道编辑导入导出，要求输入txt格式  
+  简单的赛道编辑可视化以及导入导出，要求输入txt格式  
+  可导出地图为txt,yaml,sdf格式
+  增加杂点功能，点击一次增加一次  
   data1：x坐标  
   data2：y坐标  
   data3：左右锥桶（1代表蓝色；2代表红色）</br></br>
