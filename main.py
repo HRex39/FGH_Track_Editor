@@ -106,9 +106,7 @@ class TrackEditor:
                     rightry[sum_right] = self.data2[i]
 
         sum_mix = int((sum_left+sum_right)/2*multiple)
-        tot = sum_mix
-        while tot > 0:
-            tot = tot-1
+
             mix_a = random.randint(0, 1000)/10
             mix_b = random.randint(0, 1000)/10
             t = random.randint(0, 4)
@@ -136,7 +134,7 @@ class TrackEditor:
                     flag_f = 1
 
             if flag == 0 and flag_f == 1:
-                if tot % 2 == 1:
+
                     plt.scatter(mix_a, mix_b, color='blue', marker='.')
                     self.data1.append(mix_a)
                     self.data2.append(mix_b)
@@ -149,9 +147,7 @@ class TrackEditor:
                     self.data3.append(2)
                     plt.clf()
             else:
-                tot = tot+1
 
-        print(str("Mix cones is "+str(sum_mix)+'\n'))
         self.Refresh_Loop()
         while 1:
             self.Matlab_Drawing()
